@@ -175,14 +175,23 @@ fetchCourseDetail();
 //dataList = fetchCourseDetail();
 function renderlistProduct(data) {
   data.forEach((element, index) => {
+    let countCode = 0; //phan biet san pham truyen vao ham
     for (let key in element) {
       //console.log(element);
+
       if (key != "id") {
+        countCode++;
         list = element[key];
-        console.log(key); // = tu khoa cua object luc nay la chuoi
+        //console.log(key); // = tu khoa cua object luc nay la chuoi
         var productContent = "";
         for (let item in list) {
-          console.log(item); // = tu khoa cua object luc1 nay la so
+          var apiString =
+            "https://5f5442d1e5de110016d51e7d.mockapi.io/dataProduct/1/" +
+            key +
+            "/" +
+            (+item + 1);
+          console.log(apiString); // = tu khoa cua object luc1 nay la so
+          var productContentID = "product" + countCode + "/" + (+item + 1);
           productContent += `
           <article
             class="col-lg-5 col-md-5 listBlog-post"
@@ -194,10 +203,14 @@ function renderlistProduct(data) {
                 <h3>Yến</h3>
                 <h3>Sào</h3>
                 </div>
-                <img src="${list[item].image}" alt="" class="" style="width: 370px;height: 348px;" />
+                <img src="${
+                  list[item].image
+                }" alt="" class="" style="width: 370px;height: 348px;" />
                 <div class="likes-n-comments text-center">
                   <p class="likes">${list[item].content}</p>
-                  <a href="#" class="more-btn btn">Xem chi tiết sản phẩm</a>
+                  <div class="more-btn btn" href="#" id="${productContentID}" onclick="pageProductAPI(${countCode},${
+            +item + 1
+          })">Xem chi tiết sản phẩm</div>
                 </div>
               </figure>
               <div class="blog-post-heading">
@@ -220,47 +233,9 @@ function renderlistProduct(data) {
   document.getElementById("allProduct").click();
 }
 
-function renderlistProduct1() {
-  var mainContent = " ";
-  dataList.forEach((element, index) => {
-    console.log("element: " + element + "index" + index);
-    var productContent = "";
-    element.forEach((item) => {
-      // let code = item;
-      productContent += `
-    <article
-      class="col-lg-5 col-md-5 listBlog-post"
-      data-animation="fadeInLeft"
-    >
-      <div class="blog-posts">
-        <figure class="effect-milo">
-          <div class="date">
-          <h3>Yến</h3>
-          <h3>Sào</h3>
-          </div>
-          <img src="${item.image}" alt="" class="" style="width: 370px;height: 348px;" />
-          <div class="likes-n-comments text-center">
-            <p class="likes">${item.content}</p>
-            <a href="#" class="more-btn btn">Xem chi tiết sản phẩm</a>
-          </div>
-        </figure>
-        <div class="blog-post-heading">
-          <!--<div class="blog-post-type">
-            <i class="fa fa-music"></i>
-           </div>-->
-          <div class="blog-post-title">
-            <h3>${item.title}</h3>
-            <h6>Giá: ${item.price}</h6>
-          </div>
-        </div>
-      </div>
-    </article>
-        `;
-    });
-    let viTri = "product" + index;
-    document.getElementById(viTri).innerHTML = productContent;
-  });
-  document.getElementById("allProduct").click();
+function pageProductAPI(key, id) {
+  console.log(key);
+  window.location.assign("blog.html?key=" + "product" + key + "/" + id);
 }
 function changePorfolioScrollAll() {
   $("#post-blogs .ScrollChangePorfolio").click(function () {
