@@ -516,7 +516,13 @@ section {
 }
 #footer {
   padding-top: 80px;
-  padding-bottom: 70px;
+  padding-bottom: 10px;
+}
+.footerInformation {
+  background-color: #e5e9f4;
+}
+.footerInformation div:first-child {
+  text-align: center;
 }
 #logo {
   padding-top: 30px;
@@ -547,6 +553,8 @@ section {
 .grey_section + .grey_section {
   padding-top: 5px;
 }
+/* about light_section */
+
 .row + .row {
   margin-top: 25px;
 }
@@ -961,7 +969,7 @@ transition: background-position .3s ease !important;
   position: relative;
 }
 .parallax:after {
-  background-color: #4cddf3;
+  background-color: #d5f427;
   bottom: 0;
   content: "";
   left: 0;
@@ -1529,8 +1537,8 @@ color: #fff;
     margin-top: 60px;
   }
 }
-#testimonials {
-  background-image: url(../example/parallax/testimonials.jpg);
+.testimonials_index {
+  background-image: url(https://vuayen.vn/wp-content/uploads/2019/07/6c513eb2482877a49fbafa4a25501d7c.jpg);
 }
 #skills {
   background-image: url(../example/parallax/skills.jpg);
