@@ -185,12 +185,6 @@ function renderlistProduct(data) {
         //console.log(key); // = tu khoa cua object luc nay la chuoi
         var productContent = "";
         for (let item in list) {
-          var apiString =
-            "https://5f5442d1e5de110016d51e7d.mockapi.io/dataProduct/1/" +
-            key +
-            "/" +
-            (+item + 1);
-          console.log(apiString); // = tu khoa cua object luc1 nay la so
           var productContentID = "product" + countCode + "/" + (+item + 1);
           productContent += `
           <article
