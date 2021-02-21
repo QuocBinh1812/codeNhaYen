@@ -1,16 +1,8 @@
 //so luong san pham
 let varObj = [1];
+let Gia = 1;
 let soLuong = 1;
 let weight = 0;
-let productPost = {
-  name: "binh",
-  address: "",
-  email: "",
-  phone: "",
-  count: "",
-  weight: "",
-  price: "",
-};
 const fetchProductDetail = function () {
   //const courseld = window.location.search.split("=")[1]; //co the bo window ,spilt la ham tach chuoi thanh mang
   const courseId = window.location.search.split("=")[1]; //lấy chuổi sau dấu =  trên thanh search
@@ -69,10 +61,10 @@ function renderProduct(data) {
   let modalContent = "";
   weightAll = [200];
   productContent = `
-  <div class="entry-thumbnail col-sm-6">
+  <div class="entry-thumbnail col-sm-12 col-lg-6">
   <img alt="" src="${data.image}" />
 </div>
-<div class="priceProduce col-sm-6">
+<div class="priceProduce col-sm-12 col-lg-6">
   <h3>${data.title}</h3>
   <h4>Giá từ : <span>${priceFormat}</span> VND</h4>
   <p>
@@ -187,7 +179,7 @@ function renderProduct(data) {
             id="button__submit"
             type="button"
             class="btn"
-            onclick="submitClick()"
+            onclick="submitClick(${data.price})"
             
           >
             submit
@@ -230,12 +222,42 @@ function rendersidlebarProduct(data, number) {
 }
 
 // check validation
-function submitClick() {
+function submitClick(PriceDefaulte) {
+  var ProductName = document.getElementById("exampleModalLabel").innerText;
   var Name = document.getElementById("input__name").value;
-  var Area = document.getElementById("input__area").value;
+  var Address = document.getElementById("input__area").value;
   var Email = document.getElementById("input__email").value;
   var Phone = document.getElementById("input__phone").value;
   var Weight = document.getElementById("input__weight").value;
+  var Amount = soLuong;
+  var Price = Amount == 1 ? numberFormat(PriceDefaulte) : Gia; // Toán tử 3 ngôi nếu đúng thì thực hiện hàm
+  let inFoGuess = {
+    Name,
+    Address,
+    Email,
+    Phone,
+    Amount,
+    Weight,
+    Price,
+    ProductName,
+  };
+  console.log(inFoGuess);
+  if (checkSubmit(Name, Address, Email, Phone, Weight)) {
+    sendData(inFoGuess);
+  }
+}
+// sendData
+const sendData = (inFoGuess) => {
+  axios
+    .post("https://5f5442d1e5de110016d51e7d.mockapi.io/cart", inFoGuess)
+    .then((response) => {
+      console.log(response);
+      alert("thanh cong");
+    });
+};
+
+// checkvalidationsubmit
+let checkSubmit = (Name, Address, Email, Phone, Weight) => {
   var isValid = true;
   isValid &=
     checkRequired(Name, "firstNameError") &&
@@ -243,9 +265,8 @@ function submitClick() {
     checkString(Name, "firstNameError");
 
   isValid &=
-    checkRequired(Area, "areaError") &&
-    checkLenght(Area, "areaError", 1, 400) &&
-    checkString(Area, "areaError");
+    checkRequired(Address, "areaError") &&
+    checkLenght(Address, "areaError", 1, 2000);
   isValid &=
     checkRequired(Email, "emailError") &&
     checkLenght(Email, "emailError", 1, 30);
@@ -255,10 +276,8 @@ function submitClick() {
   isValid &=
     checkRequired(Weight, "WeightError") &&
     checkLenght(Weight, "WeightError", 1, 3000);
-  if (isValid) {
-    alert("Đã gửi thông tin của bạn");
-  }
-}
+  return isValid;
+};
 
 //-------------close modal click----------------
 function closeModal() {
@@ -350,6 +369,7 @@ function changeCountPlus(price) {
       document.getElementById("input__weight").value == 200 ? price * 2 : price;
     price *= soLuong;
     price = numberFormat(price);
+    Gia = price;
     var renderPrice = " Giá: " + price + " VND";
     document.getElementById("input__price").innerHTML = renderPrice;
   }
@@ -363,6 +383,7 @@ function changeCountMinus(price) {
   price *= soLuong;
   console.log(price);
   price = numberFormat(price);
+  Gia = price;
   var renderPrice = " Giá: " + price + " VND";
   document.getElementById("input__price").innerHTML = renderPrice;
 }
