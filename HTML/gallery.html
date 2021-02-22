@@ -45,47 +45,14 @@
             </div>
             <nav>
               <ul id="mainmenu" class="menu sf-menu responsive-menu superfish">
-                <li class="active">
+                <li class="">
                   <a href="./">Trang chủ</a>
                 </li>
                 <li class="">
                   <a href="./about.html">Về chúng tôi</a>
                 </li>
-                <li class="dropdown">
+                <li class="active dropdown">
                   <a href="./gallery.html">sản Phẩm</a>
-                  <ul class="dropdown-menu">
-                    <li class="">
-                      <a href="./gallery.html">Folio version 1</a>
-                    </li>
-                    <li class="">
-                      <a href="./gallery3.html">Folio version 2</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="./blog.html">Blog</a>
-                  <ul class="dropdown-menu">
-                    <li class="">
-                      <a href="./blog.html">blog</a>
-                    </li>
-                    <li class="">
-                      <a href="./blog-single.html">Blog Post</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="./icons.html">Features</a>
-                  <ul class="dropdown-menu">
-                    <li class="">
-                      <a href="./icons.html">Icons</a>
-                    </li>
-                    <li class="">
-                      <a href="./404.html">404</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="">
-                  <a href="./contact.html">Contact</a>
                 </li>
               </ul>
             </nav>
@@ -113,32 +80,29 @@
                     >All</a
                   >
                 </li>
-
                 <li>
-                  <a data-filter=".loai2" href="#" class="ScrollChangePorfolio"
-                    >Tổ yến sơ chế</a
-                  >
-                </li>
-                <li>
-                  <a data-filter=".loai3" href="#" class="ScrollChangePorfolio"
+                  <a data-filter=".loai1" href="#" class="ScrollChangePorfolio"
                     >Tổ yến thô</a
                   >
                 </li>
                 <li>
-                  <a data-filter=".loai4" href="#" class="ScrollChangePorfolio"
+                  <a data-filter=".loai2" href="#" class="ScrollChangePorfolio"
                     >Tổ yến sào tinh chế</a
                   >
                 </li>
                 <li>
-                  <a data-filter=".loai5" href="#" class="">Chân tổ yến</a>
+                  <a data-filter=".loai3" href="#" class="ScrollChangePorfolio"
+                    >Tổ yến sơ chế</a
+                  >
                 </li>
                 <li>
-                  <a
-                    data-filter=".loai1"
-                    href="#"
-                    ON
-                    class="ScrollChangePorfolio"
-                    >Tổ yến vụn</a
+                  <a data-filter=".loai4" href="#" class="ScrollChangePorfolio"
+                    >Chân tổ yến</a
+                  >
+                </li>
+                <li>
+                  <a data-filter=".loai5" href="#" class="ScrollChangePorfolio">
+                    Tổ yến vụn</a
                   >
                 </li>
               </ul>
@@ -149,9 +113,11 @@
               class="items-row portfolio portfolioScrollAll xibachao filtrable clearfix isotope"
               id="portfolioContainer"
             >
-              <div class="item isotope-item loai2" id="product1"></div>
-              <div class="item isotope-item loai3" id="product2"></div>
-
+              <div class="item isotope-item loai1" id="product1"></div>
+              <div class="item isotope-item loai2" id="product2"></div>
+              <div class="item isotope-item loai3" id="product3"></div>
+              <div class="item isotope-item loai4" id="product4"></div>
+              <div class="item isotope-item loai5" id="product5"></div>
               <!-- <li class="item isotope-item loai3" id="product5"></li> -->
               <!--<li class="item isotope-item loai3" id="product6"></li>
               <li class="item isotope-item loai3" id="product7"></li>
@@ -309,5 +275,35 @@
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
     <script src="js/myScript.js"></script>
+    <!-- facebook chat -->
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function () {
+        FB.init({
+          xfbml: true,
+          version: "v9.0",
+        });
+      };
+
+      (function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, "script", "facebook-jssdk");
+    </script>
+
+    <!-- Your Chat Plugin code -->
+    <div
+      class="fb-customerchat"
+      attribution="setup_tool"
+      page_id="848711842168969"
+      theme_color="#ffc300"
+      logged_in_greeting="Chúng tôi có thể giúp gì cho bạn"
+      logged_out_greeting="Chúng tôi có thể giúp gì cho bạn"
+    ></div>
   </body>
 </html>

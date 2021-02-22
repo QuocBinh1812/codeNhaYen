@@ -213,7 +213,7 @@ function renderlistProduct(data) {
                  </div>-->
                 <div class="blog-post-title">
                   <h3>${list[item].title}</h3>
-                  <h6>Giá: ${list[item].price}</h6>
+                  <h6>Giá: ${numberFormat(list[item].price)} VND</h6>
                 </div>
               </div>
             </div>
@@ -245,5 +245,14 @@ function changePorfolioScrollAll() {
 
     // tat ca san pham
   });
+}
+function numberFormat(nStr) {
+  nStr += "";
+  x = nStr.split(".");
+  x1 = x[0];
+  x2 = x.length > 1 ? "." + x[1] : "";
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) x1 = x1.replace(rgx, "$1" + "," + "$2");
+  return x1 + x2;
 }
 changePorfolioScrollAll();
